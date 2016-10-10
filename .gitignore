@@ -1,0 +1,10 @@
+/*.log
+/target
+/*-init.clj
+/resources/public/js/compiled
+out
+*~
+.nrepl-port
+resources/public/css/
+resources/js/compiled/
+resources/js/*
