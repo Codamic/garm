@@ -11,3 +11,9 @@
  :active-panel
  (fn [db _]
    (:active-panel db)))
+
+
+(re-frame/reg-sub
+ :sidebar-expanded
+ (fn [db _]
+   (:sidebar-expanded db)))

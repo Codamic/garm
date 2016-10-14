@@ -4,6 +4,10 @@
               [devtools.core :as devtools]
               [garm.handlers]
               [garm.subs]
+              [js.vendor.wow]
+              [js.vendor.waves]
+              [cljsjs.jquery]
+              [js.vendor.slimscroll]
               [garm.routes :as routes]
               [garm.views :as views]
               [garm.config :as config]))
@@ -23,4 +27,8 @@
   (routes/app-routes)
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
-  (mount-root))
+  (mount-root)
+  (.init (new js/WOW {:boxClass "wow"
+                      :animateClass "animated"
+                      :offset 50
+                      :mobile false})))

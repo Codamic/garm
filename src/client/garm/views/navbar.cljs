@@ -1,5 +1,6 @@
 (ns garm.views.navbar
-  (:require [garm.views.logo :refer [logo]]))
+  (:require [re-frame.core :as re-frame]
+            [garm.views.logo :refer [logo]]))
 
 (defn navbar []
   [:div {:class "topbar"}
@@ -9,7 +10,7 @@
     [:div {:class "container"}
      [:div
       [:div {:class "pull-left"}
-      [:button {:class "button-menu-mobile open-left waves-effect waves-light"}
+      [:button {:class "button-menu-mobile open-left waves-effect waves-light" :on-click #(re-frame/dispatch [:toggle-sidebar])}
        [:i {:class "md md-menu"}]]
        [:span {:class "clearfix"}]]
       ]]]

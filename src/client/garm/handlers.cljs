@@ -11,3 +11,9 @@
  :set-active-panel
  (fn [db [_ active-panel]]
    (assoc db :active-panel active-panel)))
+
+(re-frame/reg-event-db
+ :toggle-sidebar
+ (fn [db [_]]
+   (.log js/console "HERERERE")
+   (assoc db :sidebar-expanded (not (:sidebar-expanded db)))))

@@ -11,14 +11,16 @@
                  [ring "1.4.0"]
                  [hell-hound "0.1.0-SNAPSHOT"]
                  [com.stuartsierra/component "0.3.1"]
-                 [selmer "1.0.9"]]
+                 [selmer "1.0.9"]
+
+                 [cljsjs/jquery "2.2.4-0"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-less "1.7.6-SNAPSHOT"]]
 
   :min-lein-version "2.5.3"
 
-  :source-paths ["src/server" "../lein-less/src/" "../hell-hound/src/"]
+  :source-paths ["src/server" "../lein-less/src/" "../hell-hound/src/" "../src/garm-vendor/src/"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
@@ -52,26 +54,6 @@
      :figwheel     {:on-jsload "garm.core/mount-root"}
      :compiler     {:main                 garm.core
                     :output-to            "resources/public/js/compiled/app.js"
-                    ;; :libs ["/js/jquery.min.js"
-                    ;;        "/js/bootstrap.min.js"
-                    ;;        "js/detect.js"
-                    ;;        "js/fastclick.js"
-                    ;;        "js/jquery.slimscroll.js"
-                    ;;        "js/jquery.blockUI.js"
-                    ;;        "js/waves.js"
-                    ;;        "js/wow.min.js"
-                    ;;        "js/jquery.nicescroll.js"
-                    ;;        "js/jquery.scrollTo.min.js"
-                    ;;        "js/plugins/peity/jquery.peity.min.js"
-                    ;;        "js/plugins/waypoints/lib/jquery.waypoints.js"
-                    ;;        "js/plugins/counterup/jquery.counterup.min.js"
-                    ;;        "js/plugins/morris/morris.min.js"
-                    ;;        "js/plugins/raphael/raphael-min.js"
-                    ;;        "js/plugins/jquery-knob/jquery.knob.js"
-                    ;;        "/js/pages/jquery.dashboard.js"
-                    ;;        "/js/jquery.core.js"
-                    ;;        "/js/jquery.app.js"]
-
                     :output-dir           "resources/public/js/compiled/out"
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true}}

@@ -8,3 +8,4 @@ out
 resources/public/css/
 resources/js/compiled/
 resources/js/*
+src/js/*
