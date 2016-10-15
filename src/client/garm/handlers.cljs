@@ -1,6 +1,7 @@
 (ns garm.handlers
-    (:require [re-frame.core :as re-frame]
-              [garm.db :as db]))
+  (:require [re-frame.core :as re-frame]
+            [hell-hound.frontend.fx.jquery-interceptor]
+            [garm.db :as db]))
 
 (re-frame/reg-event-db
  :initialize-db
@@ -15,5 +16,9 @@
 (re-frame/reg-event-db
  :toggle-sidebar
  (fn [db [_]]
-   (.log js/console "HERERERE")
    (assoc db :sidebar-expanded (not (:sidebar-expanded db)))))
+
+(re-frame/reg-event-fx
+ :jquery
+ (fn [_ [_ selector func & values]]
+   {:jquery {:method func :values values :selector selector}}))

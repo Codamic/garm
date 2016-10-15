@@ -51,7 +51,7 @@
   :cljsbuild
   {:builds
    [{:id           "dev"
-     :source-paths ["src/client"]
+     :source-paths ["src/client" "../hell-hound/src/"]
      :figwheel     {:on-jsload "garm.core/mount-root"}
      :compiler     {:main                 garm.core
                     :output-to            "resources/public/js/compiled/app.js"
