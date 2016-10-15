@@ -1,4 +1,4 @@
-(defproject garm "0.1.0-SNAPSHOT"
+(defproject codamic/garm "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0-alpha12"]
                  [org.clojure/clojurescript "1.9.229"]
                  [reagent "0.6.0"]
@@ -8,6 +8,7 @@
                  [compojure "1.5.0"]
                  [http-kit "2.1.18"]
                  [yogthos/config "0.8"]
+                 [codamic/garm-vendor "0.1.0"]
                  [ring "1.4.0"]
                  [hell-hound "0.1.0-SNAPSHOT"]
                  [com.stuartsierra/component "0.3.1"]

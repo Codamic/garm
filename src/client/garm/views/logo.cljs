@@ -3,7 +3,7 @@
 (defn logo []
   [:div {:class "text-center"}
    [:a {:href "/" :class "logo"}
-    LOGO
+    "LOGO"
     ;; <!-- Image Logo here -->
     ;; <!--<a href="index.html" class="logo">-->
     ;; <!--<i class="icon-c-logo"> <img src="assets/images/logo_sm.png" height="42"/> </i>-->

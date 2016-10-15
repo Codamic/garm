@@ -4,10 +4,9 @@
               [devtools.core :as devtools]
               [garm.handlers]
               [garm.subs]
-              [js.vendor.wow]
-              [js.vendor.waves]
+              [garm.vendor.js.wow]
+              [garm.vendor.js.waves]
               [cljsjs.jquery]
-              [js.vendor.slimscroll]
               [garm.routes :as routes]
               [garm.views :as views]
               [garm.config :as config]))
