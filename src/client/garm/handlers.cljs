@@ -1,6 +1,7 @@
 (ns garm.handlers
   (:require [re-frame.core :as re-frame]
-            [hell-hound.frontend.fx.jquery-interceptor]
+            [hell-hound.frontend.fx.jquery]
+            [garm.logger :refer [log]]
             [garm.db :as db]))
 
 (re-frame/reg-event-db
@@ -21,4 +22,8 @@
 (re-frame/reg-event-fx
  :jquery
  (fn [_ [_ selector func & values]]
+   (log "JQUERY HANDLER:")
+   (log selector)
+   (log func)
+   (log values)
    {:jquery {:method func :values values :selector selector}}))

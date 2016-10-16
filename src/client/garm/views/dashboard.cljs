@@ -6,7 +6,6 @@
 
 (defn dashboard []
   (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])]
-    (.log js/console (str "<<<<<<<<<<<" @sidebar-expanded))
     (fn []
       [:div {:id "wrapper" :class (if (true? @sidebar-expanded) "enlarged forced" "forced")}
        [navbar]
