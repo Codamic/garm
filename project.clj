@@ -8,6 +8,7 @@
                  [compojure "1.5.0"]
                  [http-kit "2.1.18"]
                  [yogthos/config "0.8"]
+                 [com.andrewmcveigh/cljs-time "0.4.0"]
                  [codamic/garm-vendor "0.1.0"]
                  [ring "1.4.0"]
                  [hell-hound "0.1.0-SNAPSHOT"]
