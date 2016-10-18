@@ -20,8 +20,7 @@
 (defn main-panel []
   (let [active-panel (re-frame/subscribe [:active-panel])
         lang         (re-frame/subscribe [:lang])]
-    (js/console.log "<<<<<<<<<<<,")
-    (js/console.log i/init)
-    (i/init dict lang)
+    (i/init dict @lang)
+
     (fn []
       [show-panel @active-panel])))
