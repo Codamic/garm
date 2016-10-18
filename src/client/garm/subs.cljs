@@ -17,3 +17,14 @@
  :sidebar-expanded
  (fn [db _]
    (:sidebar-expanded db)))
+
+(re-frame/reg-sub
+ :sidebar-title
+ (fn [db _]
+   (:sidebar-title db)))
+
+
+(re-frame/reg-sub
+ :lang
+ (fn [db _]
+   (:lang db)))

@@ -8,7 +8,7 @@
 
 (defn- wrapper-classes
   [sidebar-status]
-  (if (true? sidebar-status "enlarged forced" "expanded forced")))
+  (if (true? sidebar-status) "enlarged forced" "expanded forced"))
 
 (defn dashboard []
   (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])]

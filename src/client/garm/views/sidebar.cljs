@@ -3,6 +3,7 @@
             [reagent.core :refer [atom]]
             [cljs-time.core :refer [now]]
             [cljs-time.coerce :refer [to-long]]
+            [hell-hound.i18n.core :refer [t]]
             [hell-hound.frontend.helpers.jquery :refer [$]]))
 
 ;; TODO: Don't forget to add the slimscroll to the sidebar
@@ -36,15 +37,20 @@
      [:a {:href target}
       text]]))
 
+
 (defn sidebar
   "Sidebar component."
   []
   (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])
+        sidebar-title    (re-frame/subscribe [:sidebar-title])
         counter 0]
     [:div {:class "left side-menu"}
      [:div {:class "sidebar-inner slimscrollleft"}
       [:div {:id "sidebar-menu"}
        [:ul
+
+        [:li {:class "text-muted menu-title"} (t [@sidebar-title])]
+
         [sidebar-entry "some text" "fa fa-home"
          ^{:key (+ counter 1)} [sidebar-item "text1" "#sam"]
          ^{:key (+ counter 2)} [sidebar-item "text1" "#sam"]
