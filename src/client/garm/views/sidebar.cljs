@@ -9,9 +9,8 @@
 
 (defn- open-submenu
   [submenu]
-  (re-frame/dispatch [:jquery (str ".has_sub .submenu:not(#" submenu ")")  :slideUp 400])
-  ;(re-frame/dispatch [:jquery (str "#" submenu) :addClass "expanded"])
-  (re-frame/dispatch [:jquery (str "#" submenu) :slideToggle 400]))
+  (re-frame/dispatch [:jquery (str ".expanded .has_sub .submenu:not(#" submenu ")")  :slideUp 400])
+  (re-frame/dispatch [:jquery (str ".expanded #" submenu) :slideToggle 400]))
 
 
 (defn sidebar-entry
@@ -21,7 +20,6 @@
         counter          (to-long (now))
         id               (str "submenu-" counter)]
 
-    (js/console.log counter)
     [:li {:class "has_sub"}
      [:a {:href "javascript:void(0);" :class "wave-effect" :on-click #(open-submenu id)}
       [:i {:class icon-class}]
@@ -41,16 +39,17 @@
 (defn sidebar
   "Sidebar component."
   []
-  (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])]
+  (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])
+        counter 0]
     [:div {:class "left side-menu"}
      [:div {:class "sidebar-inner slimscrollleft"}
       [:div {:id "sidebar-menu"}
        [:ul
         [sidebar-entry "some text" "fa fa-home"
-         [sidebar-item "text1" "#sam"]
-         [sidebar-item "text1" "#sam"]
-         [sidebar-item "text1" "#sam"]]
+         ^{:key (+ counter 1)} [sidebar-item "text1" "#sam"]
+         ^{:key (+ counter 2)} [sidebar-item "text1" "#sam"]
+         ^{:key (+ counter 3)} [sidebar-item "text1" "#sam"]]
         [sidebar-entry "some text" "fa fa-book"
-         [sidebar-item "text1" "#sam"]
-         [sidebar-item "text1" "#sam"]
-         [sidebar-item "text1" "#sam"]]]]]]))
+         ^{:key (+ 4 counter)} [sidebar-item "text1" "#sam"]
+         ^{:key (+ 5 counter)} [sidebar-item "text1" "#sam"]
+         ^{:key (+ 6 counter)} [sidebar-item "text1" "#sam"]]]]]]))

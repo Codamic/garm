@@ -4,9 +4,15 @@
             [garm.views.sidebar :refer [sidebar]]))
 
 
+
+
+(defn- wrapper-classes
+  [sidebar-status]
+  (if (true? sidebar-status "enlarged forced" "expanded forced")))
+
 (defn dashboard []
   (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])]
     (fn []
-      [:div {:id "wrapper" :class (if (true? @sidebar-expanded) "enlarged forced" "forced")}
+      [:div {:id "wrapper" :class (wrapper-classes  @sidebar-expanded)}
        [navbar]
        [sidebar]])))
