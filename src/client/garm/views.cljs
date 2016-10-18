@@ -21,6 +21,5 @@
   (let [active-panel (re-frame/subscribe [:active-panel])
         lang         (re-frame/subscribe [:lang])]
     (i/init dict @lang)
-
     (fn []
       [show-panel @active-panel])))

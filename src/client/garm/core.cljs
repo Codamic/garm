@@ -6,6 +6,7 @@
               [garm.subs]
               [garm.vendor.js.wow]
               [garm.vendor.js.waves]
+              [cljsjs.bootstrap]
               [cljsjs.jquery]
               [garm.routes :as routes]
               [garm.views :as views]

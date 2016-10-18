@@ -3,7 +3,52 @@
             [hell-hound.i18n.core :refer [t]]
             [garm.views.logo :refer [logo]]))
 
+(defn gravatar
+  [email]
+  "http://gravatar.com/avatar/767fc9c115a1b989744c755db47feb60")
 
+
+(defn search-bar
+  []
+  (fn []
+    [:form.navbar-left.app-search.pull-left.hidden-xs {:role "search"}
+     [:input.form-controll {:type "text" :placeholder (t [:search])}]
+     [:a {:href ""}
+      [:i.fa.fa-search]]]))
+
+(defn profile-button
+  []
+  [:li.dropdown.top-menu-item-xs
+   [:a.dropdown-toggle.profile.waves-effect.waves-light
+    {:data-toggle "dropdown" :aria-expanded true :href ""}
+    [:img.img-circle {:src (gravatar "email") :alt "user-img"}]]
+   [:ul.dropdown-menu ]
+   [:li
+    [:a {:href "#"}
+     [:i.ti-user.m-r-10.text-custom]
+     (t [:profile])]]
+
+   [:li
+    [:a {:href "#"}
+     [:i.ti-setting.m-r-10.text-custom]
+     (t [:setting])]]
+
+   [:li
+    [:a {:href "#"}
+     [:i.ti-lock.m-r-10.text-custom]
+     (t [:lock])]]
+
+   [:li
+    [:a {:href "#"}
+     [:i.ti-power.m-r-10.text-custom]
+     (t [:logout])]]])
+
+
+(defn navbar-menu-item
+  [name target]
+  [:li
+   [:a.waves-effect.waves-light {:href target}
+    (t [name])]])
 
 (defn navbar []
   [:div {:class "topbar"}
@@ -19,10 +64,10 @@
 
 
       [:ul {:class "nav navbar-nav hiiden-xs"}
+       [navbar-menu-item :navbar/home "/"]
+       [navbar-menu-item :navbar/blog "/blog"]]
+      ;[search-bar]
 
-       [:li
-        [:a.waves-effect.waves-light {:href "#"}
-         (t [:home])]]
-       ]
-      ]]]
-   ])
+      [:ul.nav.navbar-nav.navbar-right.pull-right
+       [profile-button]
+       ]]]]])

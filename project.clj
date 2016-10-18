@@ -11,6 +11,7 @@
                  [com.andrewmcveigh/cljs-time "0.4.0"]
                  [codamic/garm-vendor "0.1.0"]
                  [ring "1.4.0"]
+                 [cljsjs/bootstrap "3.3.6-1"]
                  [hell-hound "0.2.0-SNAPSHOT"]
                  [com.stuartsierra/component "0.3.1"]
                  [selmer "1.0.9"]
