@@ -31,11 +31,15 @@
 
 (defn sidebar-item
   "Represent the menu item at the far end position of sidebar."
-  [text target]
+  [text & {:keys [href icon]}]
   (fn []
-    [:li
-     [:a {:href target}
-      text]]))
+    [:li.has_sub
+     (if (not (nil? icon))
+       [:a.waves-effect {:href href}
+        [:i {:class icon}]
+        [:span text]]
+       [:a.waves-effect {:href href}
+        [:span text]])]))
 
 
 (defn sidebar
@@ -49,13 +53,11 @@
       [:div {:id "sidebar-menu"}
        [:ul
 
+
         [:li {:class "text-muted menu-title"} (t [@sidebar-title])]
 
-        [sidebar-entry "some text" "ti-home"
-         ^{:key (+ counter 1)} [sidebar-item "text1" "#sam"]
-         ^{:key (+ counter 2)} [sidebar-item "text1" "#sam"]
-         ^{:key (+ counter 3)} [sidebar-item "text1" "#sam"]]
+        [sidebar-item (t [:dashboard]) :href "#asd" :icon "ti-home"]
         [sidebar-entry "some text" "fa fa-book"
-         ^{:key (+ 4 counter)} [sidebar-item "text1" "#sam"]
-         ^{:key (+ 5 counter)} [sidebar-item "text1" "#sam"]
-         ^{:key (+ 6 counter)} [sidebar-item "text1" "#sam"]]]]]]))
+         ^{:key (+ 4 counter)} [sidebar-item "text1" :href "#"]
+         ^{:key (+ 5 counter)} [sidebar-item "text1" :href "#"]
+         ^{:key (+ 6 counter)} [sidebar-item "text1" :href "#"]]]]]]))

@@ -1,22 +1,14 @@
 (defproject codamic/garm "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0-alpha12"]
                  [org.clojure/clojurescript "1.9.229"]
-                 [reagent "0.6.0"]
-                 [binaryage/devtools "0.8.2"]
-                 [re-frame "0.8.0"]
-                 [secretary "1.2.3"]
-                 [compojure "1.5.0"]
-                 [http-kit "2.1.18"]
+                 [hell-hound "0.4.0-SNAPSHOT"]
+
                  [yogthos/config "0.8"]
                  [com.andrewmcveigh/cljs-time "0.4.0"]
                  [codamic/garm-vendor "0.1.0"]
                  [ring "1.4.0"]
                  [cljsjs/bootstrap "3.3.6-1"]
-                 [hell-hound "0.2.0-SNAPSHOT"]
-                 [com.stuartsierra/component "0.3.1"]
-                 [selmer "1.0.9"]
-
-                 [cljsjs/jquery "2.2.4-0"]]
+                 [selmer "1.0.9"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]
             [lein-less "1.7.6-SNAPSHOT"]]
