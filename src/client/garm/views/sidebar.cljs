@@ -51,7 +51,7 @@
 
         [:li {:class "text-muted menu-title"} (t [@sidebar-title])]
 
-        [sidebar-entry "some text" "fa fa-home"
+        [sidebar-entry "some text" "ti-home"
          ^{:key (+ counter 1)} [sidebar-item "text1" "#sam"]
          ^{:key (+ counter 2)} [sidebar-item "text1" "#sam"]
          ^{:key (+ counter 3)} [sidebar-item "text1" "#sam"]]

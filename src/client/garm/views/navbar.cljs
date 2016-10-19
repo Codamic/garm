@@ -18,30 +18,31 @@
 
 (defn profile-button
   []
+
   [:li.dropdown.top-menu-item-xs
    [:a.dropdown-toggle.profile.waves-effect.waves-light
     {:data-toggle "dropdown" :aria-expanded true :href ""}
     [:img.img-circle {:src (gravatar "email") :alt "user-img"}]]
-   [:ul.dropdown-menu ]
-   [:li
-    [:a {:href "#"}
-     [:i.ti-user.m-r-10.text-custom]
-     (t [:profile])]]
+   [:ul.dropdown-menu
+    [:li
+     [:a {:href "#"}
+      [:i.ti-user.m-r-10.text-custom]
+      (t [:profile])]]
 
-   [:li
-    [:a {:href "#"}
-     [:i.ti-setting.m-r-10.text-custom]
-     (t [:setting])]]
+    [:li
+     [:a {:href "#"}
+      [:i.ti-settings.m-r-10.text-custom]
+      (t [:setting])]]
 
-   [:li
-    [:a {:href "#"}
-     [:i.ti-lock.m-r-10.text-custom]
-     (t [:lock])]]
+    [:li
+     [:a {:href "#"}
+      [:i.ti-lock.m-r-10.text-custom]
+      (t [:lock])]]
 
-   [:li
-    [:a {:href "#"}
-     [:i.ti-power.m-r-10.text-custom]
-     (t [:logout])]]])
+    [:li
+     [:a {:href "#"}
+      [:i.ti-power-off.m-r-10.text-custom]
+      (t [:logout])]]]])
 
 
 (defn navbar-menu-item
@@ -61,7 +62,6 @@
       [:button {:class "button-menu-mobile open-left waves-effect waves-light" :on-click #(re-frame/dispatch [:toggle-sidebar])}
        [:i {:class "md md-menu"}]]
        [:span {:class "clearfix"}]]
-
 
       [:ul {:class "nav navbar-nav hiiden-xs"}
        [navbar-menu-item :navbar/home "/"]

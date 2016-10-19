@@ -3,7 +3,11 @@
 (def dict
   {:en
    {:missing "Translation missing for '%1'"
-    :dashboard "Dashboard"
+    :dashboard               "Dashboard"
+    :profile                 "Profile"
+    :lock                    "Lock"
+    :setting                 "Setting"
+    :logout                  "Logout"
     :navbar
     {:home "Home"
      :blog "Blog"}}
