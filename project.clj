@@ -1,12 +1,10 @@
 (defproject codamic/garm "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0-alpha12"]
                  [org.clojure/clojurescript "1.9.229"]
-                 [hell-hound "0.4.0-SNAPSHOT"]
-
+                 [codamic/hell-hound "0.5.0-SNAPSHOT"]
                  [yogthos/config "0.8"]
                  [com.andrewmcveigh/cljs-time "0.4.0"]
                  [codamic/garm-vendor "0.1.0"]
-                 [ring "1.4.0"]
                  [cljsjs/bootstrap "3.3.6-1"]
                  [selmer "1.0.9"]]
 

@@ -2,7 +2,10 @@
   (:require [re-frame.core :as re-frame]
             [hell-hound.frontend.fx.jquery]
             [garm.logger :refer [log]]
-            [garm.db :as db]))
+            [hell-hound.connection.client :as channels]
+            [garm.db :as db])
+  (:require-macros
+   [cljs.core.async.macros :as asyncm :refer (go go-loop)]))
 
 (re-frame/reg-event-db
  :initialize-db
@@ -27,3 +30,16 @@
    (log func)
    (log values)
    {:jquery {:method func :values values :selector selector}}))
+
+
+
+(go-loop [event (<! channels/ch-chsk)]
+  (println "<<<<<<<<<<")
+  (println  (:event event))
+  (println (keys event))
+  (println (:ch-recv event))
+  (println (:send-fn event))
+  (println (:state event))
+  (println (:event  event))
+  (println (:id event))
+  (println (:?data  event)))
