@@ -32,15 +32,10 @@
    {:jquery {:method func :values values :selector selector}}))
 
 
+(re-frame/reg-event-fx
+ :js/alert
+ (fn [_ [_ data]]
+   (js/alert data)
+   {}))
 
-(go-loop [event (<! channels/ch-chsk)]
-  (println "<<<<<<<<<<")
-  (println  (:event event))
-  ;(println (keys event))
-  ;(println (<! (:ch-recv event)))
-  ;(println (:send-fn event))
-  ;(println (clj->js (:state event)))
-  ;(println (:event  event))
-  ;(println (:id event))
-  ;(println (:?data  event))
-  )
+(channels/start-event-router!)
