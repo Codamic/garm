@@ -1,11 +1,13 @@
 (ns garm.system
   (:require [com.stuartsierra.component :as component]
+            [hell-hound.components.websocket :refer [make-websocket]]
             [garm.server :refer [make-webserver]]))
 
 (defn create-system
   "Create the system map."
   [host port]
   (component/system-map
+   :websocket (make-websocket)
    :web (make-webserver host port)))
 
 (defn -main [& args]
