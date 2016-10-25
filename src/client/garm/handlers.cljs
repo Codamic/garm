@@ -1,8 +1,8 @@
 (ns garm.handlers
   (:require [re-frame.core :as re-frame]
-            [hell-hound.frontend.fx.jquery]
+            [hellhound.frontend.fx.jquery]
+            [hellhound.connection.client :as channels]
             [garm.logger :refer [log]]
-            [hell-hound.connection.client :as channels]
             [garm.db :as db])
   (:require-macros
    [cljs.core.async.macros :as asyncm :refer (go go-loop)]))

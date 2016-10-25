@@ -1,7 +1,7 @@
 (defproject codamic/garm "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0-alpha12"]
                  [org.clojure/clojurescript "1.9.229"]
-                 [codamic/hell-hound "0.6.0-SNAPSHOT"]
+                 [codamic/hellhound "0.6.0-SNAPSHOT"]
                  [yogthos/config "0.8"]
                  [com.andrewmcveigh/cljs-time "0.4.0"]
                  [codamic/garm-vendor "0.1.0"]
@@ -13,7 +13,7 @@
 
   :min-lein-version "2.5.3"
 
-  :source-paths ["src/server" "../lein-less/src/" "../hell-hound/src/" "../src/garm-vendor/src/"]
+  :source-paths ["src/server" "../lein-less/src/" "../hellhound/src/" "../src/garm-vendor/src/"]
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"]
@@ -43,7 +43,7 @@
   :cljsbuild
   {:builds
    [{:id           "dev"
-     :source-paths ["src/client" "../hell-hound/src/"]
+     :source-paths ["src/client" "../hellhound/src/"]
      :figwheel     {:on-jsload "garm.core/mount-root"}
      :compiler     {:main                 garm.core
                     :output-to            "resources/public/js/compiled/app.js"

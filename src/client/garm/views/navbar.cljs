@@ -1,6 +1,6 @@
 (ns garm.views.navbar
   (:require [re-frame.core :as re-frame]
-            [hell-hound.i18n.core :refer [t]]
+            [hellhound.i18n.core :refer [t]]
             [garm.views.logo :refer [logo]]))
 
 (defn gravatar

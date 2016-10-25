@@ -3,8 +3,8 @@
             [reagent.core :refer [atom]]
             [cljs-time.core :refer [now]]
             [cljs-time.coerce :refer [to-long]]
-            [hell-hound.i18n.core :refer [t]]
-            [hell-hound.frontend.helpers.jquery :refer [$]]))
+            [hellhound.i18n.core :refer [t]]
+            [hellhound.frontend.helpers.jquery :refer [$]]))
 
 ;; TODO: Don't forget to add the slimscroll to the sidebar
 

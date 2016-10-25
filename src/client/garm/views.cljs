@@ -1,6 +1,6 @@
 (ns garm.views
   (:require [re-frame.core :as re-frame]
-            [hell-hound.i18n.core :as i]
+            [hellhound.i18n.core :as i]
             [garm.locale :refer [dict]]
             [garm.views.dashboard :refer [dashboard]]))
 

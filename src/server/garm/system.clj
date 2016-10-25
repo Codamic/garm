@@ -1,6 +1,6 @@
 (ns garm.system
   (:require [com.stuartsierra.component :as component]
-            [hell-hound.components.websocket :refer [make-websocket]]
+            [hellhound.components.websocket :refer [make-websocket]]
             [garm.server :refer [make-webserver]]))
 
 (defn create-system
