@@ -1,7 +1,5 @@
 {:require [garm.core]
- :compiler-options {:asset-path           "ids/dev/app.out"
-                    ;; :output-to            "resources/public/js/compiled/app.js"
-                    ;; :output-dir           "resources/public/js/compiled/out"
+ :compiler-options {;:asset-path           "ids/dev/app.out"
                     :parallel-build       true
                     :source-map-timestamp true
                     :preloads             [devtools.preload]

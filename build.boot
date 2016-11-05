@@ -1,8 +1,12 @@
 (set-env!
- :source-paths    #{ "src/client"}
- :resource-paths  #{"src/server"  "../hellhound/src/" }
- :asset-paths     #{"resources/"}
- :dependencies '[[org.clojure/clojure           "1.9.0-alpha12"]
+ :source-paths    #{"src/cljs"
+                    "src/clj"
+                    "resources/assets"
+                    "../hellhound/src/"}
+ :resource-paths  #{"resources/statics"}
+ ;:asset-paths     #{}
+ :dependencies '[[org.clojure/clojure           "1.9.0-alpha14"]
+                 ;[org.clojure/clojure           "1.8.0"]
                  [org.clojure/clojurescript     "1.9.229"]
                  [codamic/hellhound             "0.7.0-SNAPSHOT"]
                  [yogthos/config                "0.8"]
@@ -13,12 +17,31 @@
 
                  ;; HellHound
                  [adzerk/boot-cljs           "1.7.228-2" :scope "test"]
-                 [binaryage/devtools "0.8.2"]
+                 [deraen/boot-less           "0.6.0"     :scope "test"]
+                 [deraen/boot-sass           "0.3.0"     :scope "test"]
+                 [binaryage/devtools         "0.8.2"     :scope "test"]
 
+                 [adzerk/boot-reload         "0.4.13"    :scope "test"]
+
+                 ;; Cljs repl dependencies ----------------------------
+                 [adzerk/boot-cljs-repl      "0.3.3"     :scope "test"]
+                 [com.cemerick/piggieback    "0.2.1"     :scope "test"]
+                 [weasel                     "0.7.0"     :scope "test"]
+                 [org.clojure/tools.nrepl    "0.2.12"    :scope "test"]
+                 ;; ---------------------------------------------------
+
+                 [org.danielsz/system        "0.3.2-SNAPSHOT"]
 ])
 
 (require
- '[adzerk.boot-cljs      :refer [cljs]])
+ '[adzerk.boot-cljs      :refer [cljs]]
+ '[adzerk.boot-reload    :refer [reload]]
+ '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
+ '[deraen.boot-less      :refer [less]]
+ '[deraen.boot-sass      :refer [sass]]
+ '[garm.system           :refer [dev-system]]
+ '[system.boot           :refer [system]]
+)
 
 (task-options!
   pom {:project      'codamic/garm
@@ -29,38 +52,63 @@
   jar {:main     'garm.system
        :manifest {"Description"  "Stock exchange utility belt"
                   "Url"          "http://github.com/Codamic/garm"}}
-  cljs {:ids              #{"ids/dev/app"}
-        :source-map       true}
-  ;less {:source-map true}
-  ;sass {:source-map true}
-  )
 
-(deftask bb
-  "asd"
+  cljs {:ids              #{"application"}
+        :source-map       true}
+
+  less {:source-map true}
+  sass {:source-map true})
+
+
+(deftask dev
+  "Setup the development environment."
   []
-  (comp (speak)))
+  (set-env! :source-paths #(conj % "src/js/dev"))
+  (task-options!
+   cljs   {:optimizations :none :source-map true}
+   system {:sys #'dev-system :auto true})
+  identity)
+
+(deftask prod
+  "Setup the prod environment."
+  []
+  (set-env! :source-paths #(conj % "src/js/prod"))
+  (task-options!
+   cljs   {:optimizations :advanced}
+   less   {:compression true}
+   ;reload {:on-jsload 'sd.app/init}
+   sass   {:compression true})
+
+  identity)
+
 
 (deftask build-frontend
   "Build the clojurescript application."
   []
   (comp (speak)
+        (sass)
+        (less)
         (cljs)
-        ;(sass)
-        ;(less)
-
-        ))
-
-(deftask move
-  ""
-  []
-  (comp
-   (sift   :to-asset #{#"ids/dev/"})
-   (target :dir #{"resources/js/"})))
+        (target)))
 
 (deftask build-backend
   "Build and install the hellhound"
   []
   (comp (pom) (jar) (install)))
+
+
+(deftask run
+  "Run the application for respected environment. e.g boot dev run"
+  []
+  (comp (speak)
+        (sass)
+        (less)
+        (watch)
+        (reload)
+        (cljs-repl)
+        (cljs)
+        (system)
+        (target)))
 
 
 ;; (deftask run []
@@ -69,27 +117,6 @@
 ;;         (cljs-repl)
 ;;         (reload)
 ;;         (build)))
-
-(deftask production []
-  (task-options! cljs   {:optimizations :advanced}
-                 ;sass   {:output-style :compressed}
-                 ;less   {:compression true}
-                 )
-  identity)
-
-(deftask development []
-  (task-options! cljs   {:optimizations :none :source-map true}
-                 ;reload {:on-jsload 'sd.app/init}
-                 ;less   {:source-map  true}
-                 )
-  identity)
-
-
-;; (deftask dev
-;;   "Simple alias to run application in development mode"
-;;   []
-;;   (comp (development)
-;;         (run)))
 
 
 (deftask testing []

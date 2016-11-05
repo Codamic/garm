@@ -15,7 +15,7 @@
   (GET "/" [] home)
   (GET "/dashboard" [] dashboard)
   (connection/routes)
-  (resources "/"))
+  (resources "/" {:root ""}))
 
 (def dev-handler (-> #'routes
                      wrap-keyword-params
