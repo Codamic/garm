@@ -34,13 +34,15 @@
 ])
 
 (require
- '[adzerk.boot-cljs      :refer [cljs]]
- '[adzerk.boot-reload    :refer [reload]]
- '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
- '[deraen.boot-less      :refer [less]]
- '[deraen.boot-sass      :refer [sass]]
- '[garm.system           :refer [dev-system]]
- '[system.boot           :refer [system]]
+ '[adzerk.boot-cljs       :refer [cljs]]
+ '[adzerk.boot-reload     :refer [reload]]
+ '[adzerk.boot-cljs-repl  :refer [cljs-repl start-repl]]
+ '[deraen.boot-less       :refer [less]]
+ '[deraen.boot-sass       :refer [sass]]
+ '[garm.system            :refer [dev-system]]
+ '[system.boot            :refer [system]]
+ '[hellhound.boot.helpers :refer :all]
+
 )
 
 (task-options!
@@ -63,52 +65,14 @@
 (deftask dev
   "Setup the development environment."
   []
-  (set-env! :source-paths #(conj % "src/js/dev"))
-  (task-options!
-   cljs   {:optimizations :none :source-map true}
-   system {:sys #'dev-system :auto true})
+  (dev-profile #'dev-system)
   identity)
 
 (deftask prod
   "Setup the prod environment."
   []
-  (set-env! :source-paths #(conj % "src/js/prod"))
-  (task-options!
-   cljs   {:optimizations :advanced}
-   less   {:compression true}
-   ;reload {:on-jsload 'sd.app/init}
-   sass   {:compression true})
-
   identity)
 
-
-(deftask build-frontend
-  "Build the clojurescript application."
-  []
-  (comp (speak)
-        (sass)
-        (less)
-        (cljs)
-        (target)))
-
-(deftask build-backend
-  "Build and install the hellhound"
-  []
-  (comp (pom) (jar) (install)))
-
-
-(deftask run
-  "Run the application for respected environment. e.g boot dev run"
-  []
-  (comp (speak)
-        (sass)
-        (less)
-        (watch)
-        (reload)
-        (cljs-repl)
-        (cljs)
-        (system)
-        (target)))
 
 
 ;; (deftask run []
