@@ -15,6 +15,7 @@
   (GET "/" [] home)
   (GET "/dashboard" [] dashboard)
   (connection/routes)
+  ;;TODO: This route should be exists only in development
   (resources "/" {:root ""}))
 
 (def dev-handler (-> #'routes
