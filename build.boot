@@ -42,6 +42,7 @@
  '[garm.system            :refer [dev-system]]
  '[system.boot            :refer [system]]
  '[hellhound.boot.helpers :refer :all]
+ '[hellhound.boot.repl    :refer [cider]]
 
 )
 
