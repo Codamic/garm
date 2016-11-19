@@ -1,17 +1,18 @@
 (ns garm.system
   (:require [com.stuartsierra.component :as component]
-            [hellhound.components.websocket :refer [make-websocket]]
-            [garm.server :refer [make-webserver]]
-            [system.core :refer [defsystem]]
-            [system.repl :refer [set-init! start]]
+            [hellhound.components.websocket :refer [websocket-server]]
+            [hellhound.components.webserver :refer [webserver]]
+            [system.core  :refer [defsystem]]
+            [system.repl  :refer [set-init! start]]
+            [garm.handler :refer [routes]]
             ))
 
 (defn create-system
   "Create the system map."
-  [host port]
-  (component/system-map
-   :websocket (make-websocket)
-   :web (make-webserver host port)))
+  [routes]
+  (-> (component/system-map)
+      (websocket-server)
+      (webserver routes)))
 
 ;; (defn -main [& args]
 ;;   (let [host     (first args)
@@ -24,9 +25,11 @@
 ;;         (-> (create-system host port)
 ;;             (component/start))))))
 
-(defsystem dev-system
-  [:websocket (make-websocket)
-   :web       (make-webserver "localhost" 4000)])
+(defn dev-system
+  []
+  (-> (component/system-map)
+      (websocket-server)
+      (webserver routes)))
 
 
 

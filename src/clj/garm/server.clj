@@ -1,5 +1,5 @@
 (ns garm.server
-  (:require [garm.handler :refer [handler]]
+  (:require [garm.handler :refer [dev-handler]]
             [config.core :refer [env]]
             [org.httpkit.server :refer [run-server]]
             [com.stuartsierra.component :as component :refer [Lifecycle]]))
@@ -8,7 +8,7 @@
   Lifecycle
   (start [this]
     (println (str "Webserver started on " host ":" port))
-    (assoc this :server (run-server #'handler {:ip host :port port})))
+    (assoc this :server (run-server #'dev-handler {:ip host :port port})))
 
   (stop [this]
     ((:server this))
