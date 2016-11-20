@@ -8,7 +8,7 @@
  :dependencies '[[org.clojure/clojure           "1.9.0-alpha14"]
                  ;[org.clojure/clojure           "1.8.0"]
                  [org.clojure/clojurescript     "1.9.229"]
-                 [codamic/hellhound             "0.7.0-SNAPSHOT"]
+                 [codamic/hellhound             "0.9.0-SNAPSHOT"]
                  [yogthos/config                "0.8"]
                  [ring/ring-defaults         "0.3.0-beta1"]
 
@@ -22,7 +22,6 @@
                  [deraen/boot-less           "0.6.0"     :scope "test"]
                  [deraen/boot-sass           "0.3.0"     :scope "test"]
                  [binaryage/devtools         "0.8.2"     :scope "test"]
-
                  [adzerk/boot-reload         "0.4.13"    :scope "test"]
 
                  ;; Cljs repl dependencies ----------------------------
@@ -45,8 +44,7 @@
  '[system.boot            :refer [system]]
  '[hellhound.boot.helpers :refer :all]
  '[hellhound.boot.repl    :refer [cider]]
-
-)
+ '[environ.boot           :refer [environ]])
 
 (task-options!
   pom {:project      'codamic/garm
@@ -69,11 +67,13 @@
   "Setup the development environment."
   []
   (dev-profile #'dev-system)
+  (environ :env {:http-port "4000"}))
   identity)
 
 (deftask prod
   "Setup the prod environment."
   []
+  (environ :env {:http-port "4000"})
   identity)
 
 
