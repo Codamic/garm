@@ -1,6 +1,5 @@
 (ns garm.controllers.home
-  (:require [compojure.route :refer [resources]]
-            [selmer.parser :as parser]))
+  (:require [selmer.parser :as parser]))
 
 
 (defn home
