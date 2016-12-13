@@ -9,3 +9,4 @@ resources/public/css/
 resources/js/compiled/
 resources/js/*
 src/js/*
+/.nrepl-history

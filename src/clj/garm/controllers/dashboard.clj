@@ -5,4 +5,7 @@
 (defn dashboard
   "Dashboard page controller."
   [request]
-  (parser/render-file "views/dashboard/index.html" {}))
+  {:status 200
+   :headers {"Content-Type" "text/html"}
+   :body (parser/render-file "views/dashboard/index.html" {})
+   })

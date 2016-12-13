@@ -3,6 +3,7 @@
                     "src/clj"
                     "resources/assets"
                     "../hellhound/src/"}
+
  :resource-paths  #{"resources/statics"}
  ;:asset-paths     #{}
  :dependencies '[[org.clojure/clojure           "1.9.0-alpha14"]
