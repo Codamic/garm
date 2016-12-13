@@ -14,9 +14,6 @@
             [ring.middleware.session        :refer [wrap-session]]))
 
 
-;; (def routes (make-handler ["/"
-;;                            {:get {"s" home}}]))
-
 (def routes (make-handler
              ["/" {"" {:get  home}
                    "dashboard" {:get dashboard}}]))
@@ -24,16 +21,6 @@
 (pprint "\nRoute Table:")
 (pprint (route-table))
 
-;; (defroutes "routes"
-;;   (get_ "/" home))
-
-
-;; (defroutes routes
-;;   (GET "/" [] home)
-;;   (GET "/dashboard" [] dashboard)
-;;   (connection/routes)
-;;   ;;TODO: This route should be exists only in development
-;;   (resources "/" {:root ""}))
 
 
 (def dev-handler (-> #'routes

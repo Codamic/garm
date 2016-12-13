@@ -8,6 +8,10 @@
               [garm.vendor.js.waves]
               [cljsjs.bootstrap]
               [cljsjs.jquery]
+              [cljsjs.react]
+              [cljsjs.react.dom]
+
+              [cljsjs.grommet]
               [garm.routes :as routes]
               [garm.views :as views]
               [garm.config :as config]))

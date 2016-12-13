@@ -4,6 +4,9 @@
                     "resources/assets"
                     "../hellhound/src/"}
 
+ :checkouts '[[cljsjs/grommet                "1.1.0-0"]
+              [codamic/hellhound             "0.12.0-SNAPSHOT"]]
+
  :resource-paths  #{"resources/statics"}
  ;:asset-paths     #{}
  :dependencies '[[org.clojure/clojure           "1.9.0-alpha14"]
@@ -17,6 +20,7 @@
                  [codamic/garm-vendor           "0.1.0"]
                  [cljsjs/bootstrap              "3.3.6-1"]
                  [selmer                        "1.0.9"]
+                 [cljsjs/grommet                "1.1.0-0"]
 
                  ;; HellHound
                  [adzerk/boot-cljs           "1.7.228-2" :scope "test"]
@@ -60,6 +64,8 @@
   cljs {:ids              #{"application"}
         :source-map       true}
 
+  system {:files ["src/clj/handler.clj"
+                  "src/clj/system"]}
   less {:source-map true}
   sass {:source-map true})
 
