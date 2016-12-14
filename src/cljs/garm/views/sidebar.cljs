@@ -10,18 +10,8 @@
                                         icon menu anchor] :as grommet]))
 
 
-(defn sidebar-layer
-  [sidebar-status]
-  (when sidebar-status
-    [layer {:flush true
-            :closer false
-            :onClose #(re-frame/dispatch [:toggle-sidebar])
-            :align "right"}
-     [sidebar]]))
-
-
 (defn sidebar
-  []
+  [lang]
   (let [expanded         (re-frame/subscribe [:sidebar-expanded])
         sidebar-title    (re-frame/subscribe [:sidebar-title])
         counter 0]
@@ -48,3 +38,13 @@
         "about us"]]]
      [footer {:pad "medium"}
       [button {:icon  (icon "User")}]]]))
+
+(defn sidebar-layer
+  [lang sidebar-status]
+  (when sidebar-status
+    [layer {:flush true
+            :closer false
+            :onClose #(re-frame/dispatch [:toggle-sidebar])
+            :align (if (= @lang :en) "left" "right")}
+
+     [sidebar lang]]))

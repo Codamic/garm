@@ -10,12 +10,12 @@
   [email]
   "http://gravatar.com/avatar/767fc9c115a1b989744c755db47feb60")
 
-(defn navbar []
+(defn navbar [lang]
   [header {:colorIndex "neutral-3-a"
            :full       "horizontal"
            :alignSelf  "stretch"
            :flex       true
-           :className  "rtl"}
+           :className  (if (= lang :en) "ltr" "rtl")}
 
    [button {:icon     (icon "Menu")
             :on-click (fn [_] (re-frame/dispatch [:toggle-sidebar]))

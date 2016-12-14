@@ -2,6 +2,6 @@
 
 (def default-db
   {:name "re-frame"
-   :lang :en
+   :lang :fa
    :sidebar-title :dashboard
    :sidebar-expanded false})
