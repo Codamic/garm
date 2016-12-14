@@ -22,7 +22,7 @@
     (re-frame/dispatch [:set-active-panel :dashboard]))
 
   (defroute "/about" []
-    (re-frame/dispatch [:set-active-panel :about-panel]))
+    (re-frame/dispatch [:set-active-panel :about]))
 
 
   ;; --------------------
