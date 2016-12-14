@@ -4,4 +4,4 @@
   {:name "re-frame"
    :lang :en
    :sidebar-title :dashboard
-   :sidebar-expanded true})
+   :sidebar-expanded false})

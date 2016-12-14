@@ -19,6 +19,7 @@
 (def title   (r/adapt-react-class (.-Title   js/Grommet)))
 (def menu    (r/adapt-react-class (.-Menu    js/Grommet)))
 (def button  (r/adapt-react-class (.-Button  js/Grommet)))
+(def layer  (r/adapt-react-class (.-Layer  js/Grommet)))
 
 
 (defn icon [icon-name]

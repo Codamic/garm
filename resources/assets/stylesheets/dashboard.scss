@@ -1,1 +1,10 @@
-@import "cljsjs/grommet/production/grommet.min.inc";
+//@import "cljsjs/grommet/production/grommet.min.inc";
+@import "./grommet.min";
+
+html, body {
+  background: #eeeeec;
+}
+
+.hidden {
+  display: none;
+}

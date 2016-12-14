@@ -2,7 +2,7 @@
   (:require [re-frame.core      :as re-frame]
             [garm.views.grommet :refer [app box split table table-row]]
             [garm.views.navbar  :refer [navbar]]
-            [garm.views.sidebar :refer [sidebar]]))
+            [garm.views.sidebar :refer [sidebar sidebar-layer]]))
 
 (defn- wrapper-classes
   [sidebar-status]
@@ -20,47 +20,34 @@
               :align "center"
               :pad "none"}
 
-         [sidebar]]
+         [sidebar-layer @sidebar-expanded]]
 
         [box {:pad "none"}
          [navbar {:toggle "this.toggleDrawer"}]
-         [:br]
 
-         [app {:lang "fa" :className "rtl" :centered true}
 
-          [box {:colorIndex "light-1"}]
+         [box { :pad "medium"}
 
-          [table {:scrollable true
-                  :selectable true}
-           [:thead
-            [:tr
-             [:th
+          [box {:pad "none"
+                :colorIndex "light-1"}
+           [table {
+                   :scrollable true
+                   :selectable true}
+            [:thead
+             [:tr
+              [:th
                "Name"]
 
-             [:th
-              "Note"]]]
+              [:th
+               "Note"]]]
 
-           [:tbody
-            [table-row
-             [:td
-              "Alan"]
+            [:tbody
+             [table-row
+              [:td
+               "Alan"]
 
-             [:td
-              "plays accordion"]]
-
-            [table-row
-             [:td
-              "Tracy"]
-
-             [:td
-              "travels the world"]]
-
-            [table-row
-             [:td
-              "Chris"]
-
-             [:td
-              "drops the mic"]]]]]]]])))
+              [:td
+               "plays accordion"]]]]]]]]])))
        ;; [:div {:id "wrapper" :class (wrapper-classes  @sidebar-expanded)}
        ;;  [navbar]
        ;;  [sidebar]]]))
