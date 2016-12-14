@@ -1,6 +1,6 @@
 (ns garm.views.dashboard
   (:require [re-frame.core      :as re-frame]
-            [garm.views.grommet :refer [app]]
+            [garm.views.grommet :refer [app box split table table-row]]
             [garm.views.navbar  :refer [navbar]]
             [garm.views.sidebar :refer [sidebar]]))
 
@@ -19,81 +19,45 @@
         [box {:justify "center"
               :align "center"
               :pad "none"}]
-
-
-
-
         [box {:pad "none"}
-         [nav-bar {:toggle (this.toggleDrawer)}]]
-        [: br]]
+         ;[nav-bar {:toggle "this.toggleDrawer"}]
+         [:br]
 
-          <App lang={"fa"} className={'rtl'} centered={true}>
+         [app {:lang "fa" :class "rtl" :centered true}
 
-            <Box colorIndex="light-1">
+          [box {:colorIndex "light-1"}]
 
-              <Table scrollable={true}
-                     selectable={true}>
-                <thead>
-                  <tr>
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Note
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <TableRow>
-                    <td>
-                      Alan
-                    </td>
-                    <td>
-                      plays accordion
-                    </td>
-                  </TableRow>
-                  <TableRow>
-                    <td>
-                      Tracy
-                    </td>
-                    <td>
-                      travels the world
-                    </td>
-                  </TableRow>
-                  <TableRow>
-                    <td>
-                      Chris
-                    </td>
-                    <td>
-                      drops the mic
-                    </td>
-                  </TableRow>
-                </tbody>
+          [table {:scrollable true
+                  :selectable true}
+           [:thead
+            [:tr
+             [:th
+               "Name"]
 
-              </Table>
+             [:th
+              "Note"]]]
 
-            </Box>
-          </App>
+           [:tbody
+            [table-row
+             [:td
+              "Alan"]
 
+             [:td
+              "plays accordion"]]
 
+            [table-row
+             [:td
+              "Tracy"]
 
+             [:td
+              "travels the world"]]
 
+            [table-row
+             [:td
+              "Chris"]
 
-        </Box>
-      </Split>]
-
-
-
-
-
-
-
-
-
-
-
-
-
-      [:div {:id "wrapper" :class (wrapper-classes  @sidebar-expanded)}
-       [navbar]
-       [sidebar]])))
+             [:td
+              "drops the mic"]]]]]]]])))
+       ;; [:div {:id "wrapper" :class (wrapper-classes  @sidebar-expanded)}
+       ;;  [navbar]
+       ;;  [sidebar]]]))
