@@ -11,19 +11,22 @@
 (defn dashboard []
   (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])]
     (fn []
-      [app {:lang "fa" :class  "rtl" :centered false}
+      [app {:lang "fa" :className  "rtl" :centered false}
 
        [split {:priority "right"
                :flex "right"
                :fixed false}
         [box {:justify "center"
               :align "center"
-              :pad "none"}]
+              :pad "none"}
+
+         [sidebar]]
+
         [box {:pad "none"}
-         ;[nav-bar {:toggle "this.toggleDrawer"}]
+         [navbar {:toggle "this.toggleDrawer"}]
          [:br]
 
-         [app {:lang "fa" :class "rtl" :centered true}
+         [app {:lang "fa" :className "rtl" :centered true}
 
           [box {:colorIndex "light-1"}]
 
