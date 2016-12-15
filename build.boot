@@ -21,6 +21,9 @@
                  [cljsjs/bootstrap              "3.3.6-1"]
                  [selmer                        "1.0.9"]
                  [cljsjs/grommet                "1.1.0-0"]
+                 [cheshire                      "5.6.3"]
+                 [com.cognitect/transit-clj     "0.8.297"]
+                 [clj-http                      "3.1.0"]
 
                  ;; HellHound
                  [adzerk/boot-cljs           "1.7.228-2" :scope "test"]
@@ -69,6 +72,13 @@
   less {:source-map true}
   sass {:source-map true})
 
+(deftask drepl
+  []
+  (comp
+   (cider)
+   (watch)
+   (system :auto true)
+   (repl :server true)))
 
 (deftask dev
   "Setup the development environment."

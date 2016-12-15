@@ -27,7 +27,10 @@
             [:td
              "plays accordion"]]]]])
 
-(defn dashboard [children]
+(defn dashboard
+  "Main component for dashboard page. Any children of dashboard
+  should be wrap by this component"
+  [children]
   (let [sidebar-expanded (re-frame/subscribe [:sidebar-expanded])
         lang             (re-frame/subscribe [:lang])]
 
