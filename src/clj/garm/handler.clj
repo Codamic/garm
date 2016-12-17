@@ -11,16 +11,14 @@
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.middleware.reload         :refer [wrap-reload]]
             [ring.middleware.anti-forgery   :refer [wrap-anti-forgery]]
+            [immutant.web.middleware        :refer [wrap-development wrap-write-error-handling]]
             [ring.middleware.session        :refer [wrap-session]]))
 
 
 (def routes (make-handler
-             ["/" {"" {:get  home}
-                   "dashboard" {:get dashboard}}]))
-
-(pprint "\nRoute Table:")
-(pprint (route-table))
-
+             ["/" {"" {:get  dashboard}
+                   ;"dashboard" {:get dashboard}
+                   }]))
 
 
 (def dev-handler (-> #'routes
@@ -28,7 +26,8 @@
                      wrap-params
                      wrap-anti-forgery
                      wrap-session
-                     wrap-with-logger
+                     ;;wrap-with-logger
+                     wrap-development
                      wrap-reload))
 
 (def handler (-> #'routes

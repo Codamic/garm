@@ -4,12 +4,12 @@
             [hellhound.components.webserver :refer [webserver]]
             [hellhound.system  :refer [defsystem]]
             [system.repl  :refer [set-init! start]]
-            [garm.handler :refer [routes]]))
+            [garm.handler :refer [dev-handler]]))
 
 
 (defsystem dev-system
   (websocket-server)
-  (webserver routes))
+  (webserver dev-handler))
 
 (defn -main [& args]
   (set-init! #'dev-system)
