@@ -12,6 +12,7 @@
             [ring.middleware.reload         :refer [wrap-reload]]
             [ring.middleware.anti-forgery   :refer [wrap-anti-forgery]]
             [immutant.web.middleware        :refer [wrap-development wrap-write-error-handling]]
+            [hellhound.middlewares.logger   :refer [wrap-logger]]
             [ring.middleware.session        :refer [wrap-session]]))
 
 
@@ -24,10 +25,11 @@
 (def dev-handler (-> #'routes
                      wrap-keyword-params
                      wrap-params
+                     wrap-logger
                      wrap-anti-forgery
                      wrap-session
                      ;;wrap-with-logger
-                     wrap-development
+                     ;;wrap-development
                      wrap-reload))
 
 (def handler (-> #'routes
