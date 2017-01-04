@@ -4,7 +4,7 @@
                     "resources/assets"
                     "../hellhound/src/"}
 
- :checkouts '[[cljsjs/grommet                "1.1.0-0"]
+ :checkouts '[;[cljsjs/grommet                "1.1.0-0"]
               [codamic/hellhound             "0.12.0-SNAPSHOT"]]
 
  :resource-paths  #{"resources/statics"}
@@ -84,7 +84,7 @@
   "Setup the development environment."
   []
   (dev-profile #'dev-system)
-  (environ :env {:http-port "4000"}))
+  (environ :env {:http-port "4000"})
   identity)
 
 (deftask prod

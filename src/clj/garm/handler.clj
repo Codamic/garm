@@ -28,7 +28,7 @@
                      wrap-logger
                      wrap-anti-forgery
                      wrap-session
-                     ;;wrap-with-logger
+                     wrap-with-logger
                      ;;wrap-development
                      wrap-reload))
 
