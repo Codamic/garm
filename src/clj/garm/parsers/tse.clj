@@ -2,6 +2,7 @@
   (:import (java.io ByteArrayOutputStream))
   (:require [cheshire.core   :refer :all]
             [clj-http.client :as http]
+            [hellhound.logger.core :as logger]
             [cognitect.transit :as t]))
 
 
@@ -31,8 +32,10 @@
 
 
 (defrecord Symbol [id symbol name])
+
 (defn fetch-data
   []
+  (logger/info "Fetching data.")
   (:body (http/get (:index-json (:fa site-url)))))
 
 (defn parse-details [data]
@@ -47,40 +50,8 @@
                   :symbol (get details     "namad")
                   :name   (get details     "name")})))
 
-(defn parse []
+(defn fetch-and-parse []
   (let [data             (parse-string (fetch-data))
         symbols-data     (get data "bData")
         datamap          (map make-symbol symbols-data)]
-    (println datamap)
-    (transite-write datamap)))
-
-
-;; export function tse_parse(data) {
-;;   var parsed_json = JSON.parse(data);
-;;   var allSymbols  = new yomi.Symbols();
-;;   var symbols     = [];
-
-;;   for(var i = 0; i < parsed_json.bData.length; i++) {
-;;     let symbol = new yomi.Symbol();
-;;     let obj    = parsed_json.bData[i];
-
-;;     symbol.setId(obj.i);
-
-;;     for(var j = 0; j < obj.val.length; j++) {
-;;       let key_pair = obj.val[j];
-
-;;       if (key_pair.t == "namad") {
-;;         symbol.setName(key_pair.v);
-;;       }
-
-;;       if (key_pair.t == "name") {
-;;         symbol.setTitle(key_pair.v);
-;;       }
-;;     }
-
-;;     symbols.push(symbol);
-;;   }
-
-;;   allSymbols.setSymbolsList(symbols);
-;;   return allSymbols;
-;; }
+    datamap))
