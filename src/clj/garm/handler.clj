@@ -1,12 +1,11 @@
 (ns garm.handler
-  (:require [hellhound.routes.core          :refer [make-handler route-table hellhound-routes]]
+  (:require [hellhound.routes.core          :refer [make-handler route-table hellhound-routes GET redirect-to-not-found]]
             ;; [cemerick.friend  :as friend]
             ;; (cemerick.friend [workflows   :as workflows]
             ;;                  [credentials :as creds])
             [ring.logger                    :refer [wrap-with-logger]]
             [clojure.pprint                 :refer [pprint]]
-            [garm.controllers.home          :refer [home]]
-            [garm.controllers.dashboard     :refer [dashboard]]
+            [garm.controllers.dashboard     :refer [dashboard test-handler]]
             [ring.middleware.params         :refer [wrap-params]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.middleware.reload         :refer [wrap-reload]]
@@ -17,9 +16,10 @@
 
 
 (def routes (make-handler
-             ["/" {"" {:get  dashboard}
-                   ;"dashboard" {:get dashboard}
-                   }]))
+             ["/" [(GET "" dashboard)
+                   (GET  "test"  test-handler)
+                   (hellhound-routes)
+                   (redirect-to-not-found)]]))
 
 
 (def dev-handler (-> #'routes
@@ -28,7 +28,7 @@
                      wrap-logger
                      wrap-anti-forgery
                      wrap-session
-                     wrap-with-logger
+                     ;;wrap-with-logger
                      ;;wrap-development
                      wrap-reload))
 
