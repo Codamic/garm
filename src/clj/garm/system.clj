@@ -14,11 +14,13 @@
   (webserver dev-handler)
   (crawler))
 
+(.addShutdownHook
+ (Runtime/getRuntime)
+ (Thread. (fn []
+            (logger/info "Shutting down...")
+            (stop-system))))
+
+
 (defn -main [& args]
   (set-init! #'dev-system)
-  (.addShutdownHook
-   (Runtime/getRuntime)
-   (Thread. (fn []
-              (logger/info "Shutting down...")
-              (stop-system))))
   (start))
