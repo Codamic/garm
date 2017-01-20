@@ -4,13 +4,12 @@
   (:require [hellhound.scheduler            :as s]
             [hellhound.logger.core          :as logger]
             [com.stuartsierra.component     :as component]
-            [garm.parsers.tse               :refer [fetch-and-parse]]
+            [garm.parsers.tse               :refer [parsed-data]]
             [hellhound.components.websocket :refer [send-to-all]]))
-
 
 (defn job
   []
-  (let [data (fetch-and-parse)]
+  (let [data (parsed-data)]
     (send-to-all [:garm/symbol-table (into [] data)])))
 
 (defrecord Crawler []

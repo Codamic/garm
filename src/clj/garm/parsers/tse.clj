@@ -44,14 +44,20 @@
                     (get %2 "t")
                     (get %2 "v")) {} data)))
 
-(defn make-symbol [symbol-data]
+(defn make-symbol
+  [symbol-data]
   (let [details (parse-details (get symbol-data "val"))]
     (map->Symbol {:id     (get symbol-data "i")
                   :symbol (get details     "namad")
                   :name   (get details     "name")})))
 
-(defn fetch-and-parse []
+(defn fetch-and-parse
+  []
   (let [data             (parse-string (fetch-data))
         symbols-data     (get data "bData")
         datamap          (map make-symbol symbols-data)]
     datamap))
+
+(defn parsed-data
+  []
+  (transite-write (fetch-and-parse)))

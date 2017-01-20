@@ -65,12 +65,13 @@
                   "Url"          "http://github.com/Codamic/garm"}}
 
   cljs {:ids              #{"application"}
-        :source-map       true}
+        :optimizations :none :source-map true}
 
-  system {:files ["src/clj/handler.clj"
-                  "src/clj/system"]}
+  ;; system {:sys #'dev-system :auto false :files ["src/clj/handler.clj"
+  ;;                                               "src/clj/system.clj"]}
   less {:source-map true}
   sass {:source-map true})
+
 
 (deftask drepl
   []
@@ -83,9 +84,23 @@
 (deftask dev
   "Setup the development environment."
   []
-  (dev-profile #'dev-system)
+  (set-env! :source-paths #(conj % "src/js/dev"))
   (environ :env {:http-port "4000"})
   identity)
+
+(deftask run1
+  "Run the application for respected environment. e.g boot dev run"
+  []
+  (comp (speak)
+        (watch)
+        (sass)
+        (less)
+        (reload)
+        (cljs-repl)
+        (cljs)
+        (system  :sys #'dev-system :auto true :files ["handler.clj" "system.clj"])
+        (repl :server true)
+        (target)))
 
 (deftask prod
   "Setup the prod environment."
