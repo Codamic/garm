@@ -12,6 +12,7 @@
 (defsystem dev-system
   (websocket-server)
   (webserver dev-handler)
+
   (crawler))
 
 (.addShutdownHook

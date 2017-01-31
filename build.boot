@@ -3,7 +3,6 @@
                     "src/clj"
                     "resources/assets"
                     "../hellhound/src/"}
-
  :checkouts '[;[cljsjs/grommet                "1.1.0-0"]
               [codamic/hellhound             "0.12.0-SNAPSHOT"]]
 
@@ -15,7 +14,6 @@
                  [codamic/hellhound             "0.11.0-SNAPSHOT"]
                  [yogthos/config                "0.8"]
                  [ring/ring-defaults         "0.3.0-beta1"]
-
                  [com.andrewmcveigh/cljs-time   "0.4.0"]
                  [codamic/garm-vendor           "0.1.0"]
                  [cljsjs/bootstrap              "3.3.6-1"]
@@ -45,11 +43,11 @@
 (require
  '[adzerk.boot-cljs       :refer [cljs]]
  '[adzerk.boot-reload     :refer [reload]]
- '[adzerk.boot-cljs-repl  :refer [cljs-repl start-repl]]
+ '[adzerk.boot-cljs-repl  :refer [cljs-repl-env start-repl]]
  '[deraen.boot-less       :refer [less]]
  '[deraen.boot-sass       :refer [sass]]
+ '[system.boot            :refer [system] :as s]
  '[garm.system            :refer [dev-system]]
- '[system.boot            :refer [system]]
  '[hellhound.boot.helpers :refer :all]
  '[hellhound.boot.repl    :refer [cider]]
  '[environ.boot           :refer [environ]])
@@ -73,34 +71,26 @@
   sass {:source-map true})
 
 
-(deftask drepl
-  []
-  (comp
-   (cider)
-   (watch)
-   (system :auto true)
-   (repl :server true)))
-
 (deftask dev
-  "Setup the development environment."
-  []
-  (set-env! :source-paths #(conj % "src/js/dev"))
-  (environ :env {:http-port "4000"})
-  identity)
+  [l with-less          bool "Use LESS instead of SASS."
+   p port        PORT   int  "Port to run the web server on."]
+  (let [port_ (or port 4000)]
+    (set-env! :source-paths #(conj % "src/js/dev"))
+    (environ :env {:http-port (str port_)})
 
-(deftask run1
-  "Run the application for respected environment. e.g boot dev run"
-  []
-  (comp (speak)
-        (watch)
-        (sass)
-        (less)
-        (reload)
-        (cljs-repl)
-        (cljs)
-        (system  :sys #'dev-system :auto true :files ["handler.clj" "system.clj"])
-        (repl :server true)
-        (target)))
+    (comp
+     (cider)
+     (development)
+     (watch)
+     (if with-less
+       (less)
+       (sass))
+     (system :sys #'dev-system :auto true :files ["handler.clj" "system.clj"])
+     (cljs-repl-env :ws-host "localhost" :ids #{"application"})
+     (cljs)
+     (repl :server true)
+     (target))))
+
 
 (deftask prod
   "Setup the prod environment."

@@ -22,6 +22,12 @@
  (fn [db [_]]
    (assoc db :sidebar-expanded (not (:sidebar-expanded db)))))
 
+(re-frame/reg-event-db
+ :app-db/update
+ (fn [db [_ keys value]]
+   (js/console.log (str "Updating '" (first keys) "'..."))
+   (assoc db (first keys) (second value))))
+
 (re-frame/reg-event-fx
  :jquery
  (fn [_ [_ selector func & values]]
