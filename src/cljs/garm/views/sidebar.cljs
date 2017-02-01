@@ -1,13 +1,13 @@
 (ns garm.views.sidebar
-  (:require [re-frame.core :as re-frame]
-            [reagent.core :refer [atom] :as r]
-            [cljs-time.core :refer [now]]
-            [cljs-time.coerce :refer [to-long]]
-            [hellhound.i18n.core :refer [t]]
-            [hellhound.frontend.helpers.jquery :refer [$]]
-            [garm.views.grommet :refer [title button
-                                        header footer box layer
-                                        icon menu anchor] :as grommet]))
+  (:require [re-frame.core             :as re-frame]
+            [reagent.core              :refer [atom] :as r]
+            [cljs-time.core            :refer [now]]
+            [cljs-time.coerce          :refer [to-long]]
+            [hellhound.i18n.core       :refer [t]]
+            [hellhound.helpers.jquery  :refer [$]]
+            [garm.views.grommet        :refer [title button
+                                               header footer box layer
+                                               icon menu anchor] :as grommet]))
 
 
 (defn sidebar
