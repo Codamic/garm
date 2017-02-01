@@ -24,11 +24,4 @@
    (assoc db :sidebar-expanded (not (:sidebar-expanded db)))))
 
 
-
-(re-frame/reg-event-fx
- :js/alert
- (fn [_ [_ data]]
-   (js/alert data)
-   {}))
-
 (channels/start-event-router!)

@@ -5,7 +5,7 @@
             [hellhound.logger.core          :as logger]
             [com.stuartsierra.component     :as component]
             [garm.parsers.tse               :refer [parsed-data]]
-            [hellhound.components.websocket :refer [send-to-all]]))
+            [hellhound.connection           :refer [send-to-all]]))
 
 (defn job
   []
