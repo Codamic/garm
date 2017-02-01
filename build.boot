@@ -20,7 +20,6 @@
                  [selmer                        "1.0.9"]
                  [cljsjs/grommet                "1.1.0-0"]
                  [cheshire                      "5.6.3"]
-                 [com.cognitect/transit-clj     "0.8.297"]
                  [clj-http                      "3.1.0"]
 
                  ;; HellHound

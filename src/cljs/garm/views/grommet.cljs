@@ -11,6 +11,7 @@
 (def table (r/adapt-react-class (.-Table js/Grommet)))
 
 (def table-row (r/adapt-react-class (.-TableRow js/Grommet)))
+(def table-header (r/adapt-react-class (.-TableHeader js/Grommet)))
 
 (def sidebar (r/adapt-react-class (.-Sidebar js/Grommet)))
 (def header  (r/adapt-react-class (.-Header  js/Grommet)))

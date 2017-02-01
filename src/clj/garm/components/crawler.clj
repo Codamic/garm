@@ -10,7 +10,7 @@
 (defn job
   []
   (let [data (parsed-data)]
-    (send-to-all [:app-db/update {:keys [:symbol-table] :value (into [] data)}])))
+    (send-to-all [:app-db/update {:keys [:symbols-table] :value (into [] data)}])))
 
 (defrecord Crawler []
   component/Lifecycle

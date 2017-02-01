@@ -60,4 +60,6 @@
 
 (defn parsed-data
   []
-  (transite-write (fetch-and-parse)))
+                                        ;(transite-write)
+  (fetch-and-parse)
+  )

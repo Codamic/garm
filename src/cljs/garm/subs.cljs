@@ -28,3 +28,9 @@
  :lang
  (fn [db _]
    (:lang db)))
+
+
+(re-frame/reg-sub
+ :symbols-table
+ (fn [db _]
+   (:symbols-table db)))

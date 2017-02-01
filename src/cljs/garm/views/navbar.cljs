@@ -21,7 +21,7 @@
             :on-click (fn [_] (re-frame/dispatch [:toggle-sidebar]))
             :plain    true}]
 
-   [title "watcher"]
+   [title (t :site-title)]
 
    [box {:flex       true
          :justify    "end"
