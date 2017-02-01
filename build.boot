@@ -2,7 +2,7 @@
  :source-paths    #{"src/cljs"
                     "src/clj"
                     "resources/assets"
-                    "../hellhound/src/"}
+                    }
  :checkouts '[;[cljsjs/grommet                "1.1.0-0"]
               [codamic/hellhound             "0.12.0-SNAPSHOT"]]
 
@@ -80,7 +80,6 @@
 
     (comp
      (cider)
-     (development)
      (watch)
      (if with-less
        (less)
