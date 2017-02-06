@@ -6,28 +6,6 @@
             [cognitect.transit :as t]))
 
 
-(defn transite-write
-  "asdasdasd"
-  [x]
-  (let [baos (ByteArrayOutputStream.)
-        w    (t/writer baos :json)
-        _    (t/write w x)
-        ret  (.toString baos)]
-    (.reset baos)
-    ret))
-
-
-(defn transit-writev
-  "asdasdasdasd"
-  [x]
-  (let [baos (ByteArrayOutputStream.)
-        wv   (t/writer baos :json-verbose)
-        _    (t/write wv x)
-        ret  (.toString baos)]
-    (.reset baos)
-    ret))
-
-
 (def site-url {:fa {:index-json "http://new.tse.ir/json/MarketWatch/data_1.json"}})
 
 
@@ -47,9 +25,29 @@
 (defn make-symbol
   [symbol-data]
   (let [details (parse-details (get symbol-data "val"))]
-    (map->Symbol {:id     (get symbol-data "i")
-                  :symbol (get details     "namad")
-                  :name   (get details     "name")})))
+    {:id              (get symbol-data "i")
+     :symbol          (get details     "namad")
+     :name            (get details     "name")
+     :volum           (get details     "hajm")
+     :value           (get details     "arzesh")
+     :total_trades    (get details "dm")
+     :max_price       (get details "bish")
+     :min_price       (get details "kam")
+     :previous_day    (get details "rgh")
+     :effect_on_index (get details "tdsh")
+     :pe              (get details "pe")
+     :eps             (get details "eps")
+     :market_value    (get details "ab")
+     ;; TODO: Add the total demand and total supply too
+     :best_demand     (get details "bt")
+     :best_supply     (get details "ba")
+     :final_price     {:price      (get details "pghey")
+                       :tolerance  (get details "ptagh")
+                       :percentage (get details "pdar")}
+     :starting_price  {:price      (get details "aghey")
+                       :tolerance  (get details "atagh")
+                       :percentage (get details "adar")}
+}))
 
 (defn fetch-and-parse
   []
@@ -60,6 +58,4 @@
 
 (defn parsed-data
   []
-                                        ;(transite-write)
-  (fetch-and-parse)
-  )
+  (fetch-and-parse))
