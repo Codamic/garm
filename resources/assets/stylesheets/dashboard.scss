@@ -1,6 +1,11 @@
 //@import "cljsjs/grommet/production/grommet.min.inc";
 @import "./grommet.min";
 
+  @font-face {
+  font-family: 'Yekan';
+  src: url("/fonts/Yekan.woff");
+}
+
 html, body {
   background: #eeeeec;
 }
@@ -10,7 +15,14 @@ html, body {
 }
 
 .rtl {
+
   .grommetux-table td, .grommetux-table th {
     text-align: right;
+  }
+}
+
+html[dir="rtl"] {
+  body, h1, h2, h3, h4, h5, p, a, span {
+    font-family: "Yekan";
   }
 }
