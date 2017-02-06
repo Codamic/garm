@@ -39,8 +39,8 @@
      :eps             (get details "eps")
      :market_value    (get details "ab")
      ;; TODO: Add the total demand and total supply too
-     :best_demand     (get details "bt")
-     :best_supply     (get details "ba")
+     :best-demand     (get details "bt")
+     :best-supply     (get details "ba")
      :final_price     {:price      (get details "pghey")
                        :tolerance  (get details "ptagh")
                        :percentage (get details "pdar")}

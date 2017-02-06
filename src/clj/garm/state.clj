@@ -1,3 +1,3 @@
 (ns garm.state)
 
-(def lang (atom :fa))
+(def lang (atom "fa"))
