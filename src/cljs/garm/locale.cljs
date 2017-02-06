@@ -18,4 +18,10 @@
    {:missing "Translation missing for '%1'"
     :site-title    "دیدبان"
     :symbols-table {:name "نام"
-                    :price "قیمت"}}})
+                    :price "قیمت"
+                    :volume "حجم"
+                    :symbol "نماد"
+                    :value  "ارزش"
+                    :total-trades "تعداد معاملات"
+                    :best-demand "بهترین تقاضا"
+                    :best-supply "بهترین ارضه"}}})

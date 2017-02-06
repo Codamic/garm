@@ -11,34 +11,43 @@
 (defn symbol-row
   "A symbol row in the symbol table"
   [symbol]
-  (js/console.log "<<<<<<")
-  (js/console.log symbol)
-  [table-row
-   [:td
-    (:name symbol)]
-   [:td]])
+  (fn []
+    [table-row {:id (:id symbol)}
+     [:td (:symbol symbol)]
+     [:td (:name   symbol)]
+     [:td (:value  symbol)]
+     [:td (:volum  symbol)]
+     [:td (:total-trades   symbol)]
+     [:td (:best-demand   symbol)]
+     [:td (:best-supply   symbol)]
+     ]))
 
 (defn symbols-table
   "The global symbols table"
   []
-  (let [symbols (re-frame/subscribe [:symbols-table])]
+  (let [symbols (re-frame/subscribe [:symbols-table])
+        lang    (re-frame/subscribe [:lang])]
 
     [table {:scrollable true
-            :selectable true}
+            :selectable true
+            :className  (if (= @lang :en) "ltr" "rtl")}
      ;;:onSort
      [table-header
-      {:labels [(t :symbols-table/name)
-                (t :symbols-table/price)]
+      {:labels [(t :symbols-table/symbol)
+                (t :symbols-table/name)
+                (t :symbols-table/value)
+                (t :symbols-table/volume)
+                (t :symbols-table/total-trades)
+                (t :symbols-table/best-demand)
+                (t :symbols-table/best-supply)]
        :sortIndex 0
-       :sortAscending false}
+       :sortAscending false}]
 
-      [:tbody
-       (if (nil? @symbols)
-         (do
-           (js/console.log "zczczxcdafsdfsdfsdfsdf")
-           [table-row
-            [:td
-             "asdasdasd"]
-            [:td]])
-          (doseq [symbol @symbols]
-            [symbol-row symbol]))]]]))
+     [:tbody
+      (if (nil? @symbols)
+        (do
+          [table-row
+           [:td {:colSpan 7}
+            "TODO"]])
+        (for [symbol @symbols]
+          ^{:key (:id symbol)} [symbol-row symbol]))]]))
