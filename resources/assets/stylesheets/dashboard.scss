@@ -8,3 +8,9 @@ html, body {
 .hidden {
   display: none;
 }
+
+.rtl {
+  .grommetux-table td, .grommetux-table th {
+    text-align: right;
+  }
+}
