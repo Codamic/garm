@@ -13,7 +13,6 @@
                  [org.clojure/clojurescript     "1.9.229"]
                  [codamic/hellhound             "0.12.0-SNAPSHOT"]
                  [yogthos/config                "0.8"]
-                 [ring/ring-defaults         "0.3.0-beta1"]
                  [com.andrewmcveigh/cljs-time   "0.4.0"]
                  [codamic/garm-vendor           "0.1.0"]
                  [cljsjs/bootstrap              "3.3.6-1"]
