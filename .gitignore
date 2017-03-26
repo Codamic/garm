@@ -10,3 +10,4 @@ resources/js/compiled/
 resources/js/*
 src/js/*
 /.nrepl-history
+checkouts/

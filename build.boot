@@ -16,7 +16,6 @@
                  [com.andrewmcveigh/cljs-time   "0.4.0"]
                  [codamic/garm-vendor           "0.1.0"]
                  [cljsjs/bootstrap              "3.3.6-1"]
-                 [selmer                        "1.0.9"]
                  [cljsjs/grommet                "1.1.0-0"]
                  [cheshire                      "5.6.3"]
                  [clj-http                      "3.1.0"]
