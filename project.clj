@@ -16,12 +16,17 @@
                  [cheshire                      "5.6.3"]
                  [clj-http                      "3.1.0"]]
 
-  :source-paths ["src/clj" "src/cljs" "src/cljc"]
+  :source-paths ["src/clj" "src/cljs" "src/cljc" "resources/"]
   :test-paths ["test/clj" "test/cljc"]
 
   :main    garm.system
   :plugins [[lein-cljsbuild "1.1.3"]
-            [lein-environ "1.0.3"]]
+            [lein-environ   "1.0.3"]
+            [lein-sassy     "1.0.8"]]
+
+  :hooks [leiningen.sass]
+  :sass {:src "resources/assets/stylesheets"
+         :dst "resources/public/stylesheets"}
 
   :min-lein-version "2.6.1"
 
