@@ -6,27 +6,35 @@
   :scm         {:url "https://github.com/Codamic/garm"}
 
   :dependencies [[org.clojure/clojure           "1.9.0-alpha14"]
-                 [org.clojure/clojurescript     "RELEASE"]
-                 [codamic/hellhound             "0.12.0-SNAPSHOT"]
+                 [org.clojure/clojurescript     "1.9.495"]
+                 [codamic/hellhound             "0.13.0-SNAPSHOT"]
                  [yogthos/config                "0.8"]
                  [com.andrewmcveigh/cljs-time   "0.4.0"]
                  [codamic/garm-vendor           "0.1.0"]
                  [cljsjs/bootstrap              "3.3.6-1"]
                  [cljsjs/grommet                "1.1.0-0"]
-                 [cheshire                      "5.6.3"]
-                 [clj-http                      "3.1.0"]]
+                 [cheshire                      "5.7.0"]
+                 [com.andrewmcveigh/cljs-time   "0.5.0-alpha2"]
+                 [clj-http                      "3.4.1"]]
 
   :source-paths ["src/clj" "src/cljs" "src/cljc" "resources/"]
   :test-paths ["test/clj" "test/cljc"]
 
   :main    garm.system
-  :plugins [[lein-cljsbuild "1.1.3"]
+  :plugins [[lein-cljsbuild "1.1.5"]
             [lein-environ   "1.0.3"]
-            [lein-sassy     "1.0.8"]]
+            [lein-sass      "0.4.0"]]
 
-  :hooks [leiningen.sass]
-  :sass {:src "resources/assets/stylesheets"
-         :dst "resources/public/stylesheets"}
+  ;; :hooks [;;leiningen.sass
+  ;;         leiningen.cljsbuild]
+
+  :sass {:src              "resources/stylesheets"
+         :output-directory "resources/public/css/"
+         :source-maps      true
+         :style            :nested}
+
+  :cooper {"sass" ["lein" "sass" "auto"]
+           "web"  ["lein" "run"]}
 
   :min-lein-version "2.6.1"
 
@@ -51,6 +59,8 @@
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/garm.js"
                            :output-dir "resources/public/js/compiled/out"
+                           :preloads             [devtools.preload]
+                           :external-config      {:devtools/config {:features-to-install :all}}
                            :source-map-timestamp true}}
 
                {:id "test"
@@ -59,11 +69,11 @@
                            :main garm.test-runner
                            :optimizations :none}}
 
-               {:id "test-advance"
-                :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
-                :compiler {:output-to "resources/public/js/compiled/testable-advance.js"
-                           :main garm.test-runner
-                           :optimizations :advance}}
+               ;; {:id "test-advance"
+               ;;  :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
+               ;;  :compiler {:output-to "resources/public/js/compiled/testable-advance.js"
+               ;;             :main garm.test-runner
+               ;;             :optimizations :advanced}}
 
                {:id "min"
                 :source-paths ["src/cljs" "src/cljc"]
@@ -111,14 +121,15 @@
   :doo {:build "test"}
 
   :profiles {:dev
-             {:dependencies [[figwheel                   "0.5.4-4"]
-                             [figwheel-sidecar           "0.5.4-4"]
+             {:dependencies [[figwheel                   "0.5.9"]
+                             [figwheel-sidecar           "0.5.9"]
                              [funcool/codeina            "0.5.0"]
                              [com.cemerick/piggieback    "0.2.1"]
-                             [org.clojure/tools.nrepl    "0.2.12"]]
+                             [org.clojure/tools.nrepl    "0.2.12"]
+                             [binaryage/devtools         "0.9.2"]]
 
-              :plugins [[lein-figwheel  "0.5.4-4"]
-                        [lein-doo       "0.1.6"]]
+              :plugins [[lein-figwheel  "0.5.9"]
+                        [lein-doo       "0.1.7"]]
 
               :source-paths ["dev"]
               :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}
